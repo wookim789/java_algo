@@ -9,12 +9,26 @@ public class HoneyHouse {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         int n = Integer.parseInt(br.readLine());
-        int m  = n / 6;
-        int g = n % 6;
 
-        if(g != 0){
-            m ++;
+        int result = 1;
+        int m = 6;
+        int k = 1;
+        if(n == 1){
+            System.out.println(result);
+            return;
         }
-        System.out.println(m);
+
+        while(n > m){
+            n -=  m;
+            k ++;
+            m *= k;
+            result ++;
+        }
+
+        if(n > 0){
+            result ++;
+        }
+
+        System.out.println(result);
     }
 }
