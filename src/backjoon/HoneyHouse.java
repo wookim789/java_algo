@@ -10,25 +10,18 @@ public class HoneyHouse {
 
         int n = Integer.parseInt(br.readLine());
 
-        int result = 1;
-        int m = 6;
-        int k = 1;
         if(n == 1){
-            System.out.println(result);
+            System.out.println(1);
             return;
         }
 
+        int m = 1;
+        int multSix = 6;
+
         while(n > m){
-            n -=  m;
-            k ++;
-            m *= k;
-            result ++;
+            m += multSix;
+            multSix += 6 ;
         }
-
-        if(n > 0){
-            result ++;
-        }
-
-        System.out.println(result);
+        System.out.println(multSix/6);
     }
 }
