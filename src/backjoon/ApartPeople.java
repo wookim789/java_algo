@@ -1,44 +1,34 @@
 package backjoon;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-import java.util.stream.Stream;
+import java.util.*;
+import java.util.stream.*;
 
 public class ApartPeople {
     public static void main(String[] args) throws Exception{
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
-        int t = Integer.parseInt(br.readLine());
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
 
         List<List<Integer>> dpList = new ArrayList<>();
         dpList.add(Stream.iterate(1, x -> x + 1).limit(14)
                         .collect(Collectors.toList()));
 
-        for(int i = 1; i < 14; i++){
-            List<Integer> underFloor = dpList.get(i - 1);
-            List<Integer> curFloor = Stream.iterate(-1, x -> {
-                x++;
-                return underFloor.stream().;
-            }).collect(Collectors.toList());
+        for(int i = 0; i < 15; i++){
+            List<Integer> underFloor = dpList.get(i);
+            List<Integer> curFloor = new ArrayList<>();
 
+            int a = 0;
+            for(int j = 0; j < 14; j++){
+                a = a + underFloor.get(j);
+                curFloor.add(a);
+            }
+            dpList.add(curFloor);
         }
-
         while (t > 0){
-            int k = Integer.parseInt(br.readLine());
-            int n = Integer.parseInt(br.readLine());
+            int k = sc.nextInt();
+            int n = sc.nextInt();
 
-
-            /**
-             * 1 5 15 35
-             * 1 4 10 20
-             * 1 3 6 10
-             * 1 2 3 4 5 6 7 ... 14
-             */
+            System.out.println(dpList.get(k).get(n-1));
+            t--;
         }
     }
 }
