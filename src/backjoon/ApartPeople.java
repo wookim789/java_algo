@@ -2,7 +2,7 @@ package backjoon;
 
 import java.util.*;
 import java.util.stream.*;
-
+/***/
 public class ApartPeople {
     public static void main(String[] args) throws Exception{
         Scanner sc = new Scanner(System.in);
