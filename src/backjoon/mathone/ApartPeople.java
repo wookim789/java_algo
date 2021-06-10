@@ -1,4 +1,4 @@
-package backjoon;
+package backjoon.mathone;
 
 import java.util.*;
 import java.util.stream.*;
