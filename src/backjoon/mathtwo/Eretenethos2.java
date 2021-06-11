@@ -2,8 +2,7 @@ package backjoon.mathtwo;
 
 import java.util.*;
 
-public class Main {
-//public class Eretenethos2 {
+public class Eretenethos2 {
     public static void main(String[] args)throws Exception{
         Scanner sc = new Scanner(System.in);
 
