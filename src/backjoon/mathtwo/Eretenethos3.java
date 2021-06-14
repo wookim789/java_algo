@@ -3,9 +3,7 @@ package backjoon.mathtwo;
 import java.io.*;
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
-//public class Main {
 public class Eretenethos3 {
     public static void main(String [] args) throws Exception{
 
@@ -15,35 +13,29 @@ public class Eretenethos3 {
                 .collect(Collectors.toList());
         br.close();
 
+        if(list.get(1) == 1){
+            return;
+        }
+
+        int[] primeArr = new int[list.get(1) + 1];
+        primeArr[1] = 1;
+        for(int i = 2; i < list.get(1); i++){
+            for(int j = 2; j < list.get(1); j++){
+                if(i * j >= primeArr.length){
+                    break;
+                }
+                primeArr[i*j] = 1;
+            }
+        }
+
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-        // 링크드리스트 에레테너스 채 이옹
+        for(int k = 1; k < primeArr.length; k++){
+            if(primeArr[k] != 1 && k >= list.get(0) && k <= list.get(1)){
+                bw.write(k + "\n");
+            }
+        }
 
-
-//
-//        if(list.get(1) == 1){
-//            return;
-//        }else if(list.get(0) <= 2){
-//            bw.write(2 + "\n");
-//        }
-//
-//        List<Integer> primeList = new ArrayList<>(Arrays.asList(2));
-//
-//        for(int i = 2; i < list.get(1); i++){
-//            for(int pdx = 0; pdx < primeList.size(); pdx++){
-//                if(i % primeList.get(pdx) == 0){
-//                    break;
-//                }else if(i % primeList.get(pdx) != 0 && primeList.get(pdx) > i / 2) {
-//                    primeList.add(i);
-//                    if(list.get(0) <= i && i <= list.get(1)){
-//                        bw.write(i + "\n");
-//                    }
-//                    break;
-//                }
-//            }
-//        }
-//        bw.flush();
-//        bw.close();
+        bw.flush();
+        bw.close();
     }
 }
-
-// 1 2 4 5 10 10 20 25 50 100
