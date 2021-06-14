@@ -19,7 +19,6 @@ public class Eretenethos3 {
         // 링크드리스트 에레테너스 채 이옹
 
 
-
 //
 //        if(list.get(1) == 1){
 //            return;
@@ -44,7 +43,7 @@ public class Eretenethos3 {
 //        }
 //        bw.flush();
 //        bw.close();
-//    }
+    }
 }
 
 // 1 2 4 5 10 10 20 25 50 100
