@@ -7,19 +7,17 @@ import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Main {
-//public class Eretenethos4 {
+public class Eretenethos4 {
     public static void main(String[] args) throws Exception{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         List<Integer> nList = new ArrayList<>();
 
-        int i = Integer.parseInt(br.readLine()), max = 0;
+        int i = Integer.parseInt(br.readLine());
+        int max = 0;
 
-        while(i != 0){
-            if(i > max){
-                max = i;
-            }
+        while(i > max){
+            max = i;
             nList.add(i);
             i = Integer.parseInt(br.readLine());
         }
