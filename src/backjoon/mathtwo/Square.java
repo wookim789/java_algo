@@ -33,15 +33,15 @@ public class Square {
         }
         br.close();
 
-        for(String key : xMap.keySet()){
-            if(xMap.get(key) == 1){
-                System.out.print(key + " ");
+        for(Map.Entry<String, Integer> entry: xMap.entrySet()){
+            if(entry.getValue() == 1){
+                System.out.print(entry.getKey() + " ");
                 break;
             }
         }
-        for(String key : yMap.keySet()){
-            if(yMap.get(key) == 1){
-                System.out.println(key);
+        for(Map.Entry<String, Integer> entry: yMap.entrySet()){
+            if(entry.getValue() == 1){
+                System.out.print(entry.getKey() + " ");
                 break;
             }
         }
