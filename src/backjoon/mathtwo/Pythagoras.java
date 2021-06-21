@@ -5,6 +5,7 @@ import java.io.BufferedWriter;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,18 +22,10 @@ public class Pythagoras {
                 break;
             }
 
-            int max = nList.stream()
-                    .mapToInt(x -> x)
-                    .max()
-                    .orElseThrow(RuntimeException::new);
+            nList.sort(Comparator.naturalOrder());
+            int max = nList.get(nList.size() - 1);
 
-            int pythagoras = max * max;
-            for(Integer n : nList){
-                if(n != max){
-                    pythagoras -= n * n;
-                }
-            }
-            if(pythagoras == 0){
+            if(max * max - nList.get(0) * nList.get(0) - nList.get(1) * nList.get(1) == 0){
                 bw.write("right\n");
             }else{
                 bw.write("wrong\n");
