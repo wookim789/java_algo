@@ -9,49 +9,43 @@ public class StarForce {
         int n = Integer.parseInt(br.readLine());
         br.close();
         for(int i = 0; i < n / 3; i ++){
-            recurFnc(n);
+            recurFnc(n, i);
         }
-
     }
-    private static void recurFnc(int n){
-        for(int i = 0; i < n; i++){
-            printFRow(n);
+    private static void recurFnc(int n, int rdx){
+        for(int col = 0; col < n; col++){
+            printFRow(n, rdx, col / 3);
         }
         System.out.println();
         for(int i = 0; i < n; i++){
-            printSRow(n,i);
+            printSRow(n, i, rdx, i / 3);
         }
         System.out.println();
         for(int i = 0; i < n; i++){
-            printTRow(n);
+            printFRow(n, rdx, i / 3);
         }
         System.out.println();
     }
-    private static void printFRow(int n){
+    private static void printFRow(int n, int rdx, int colSec){
         if(n / 3 == 1){
-            System.out.print("*");
-            return;
-        }
-        printFRow(n / 3);
-    }
-    private static void printSRow(int n, int i){
-        if(n / 3 == 1){
-            if(i % 2 != 0){
+            if(rdx % 3 == 1 && colSec % 3 == 1) {
                 System.out.print(" ");
             }else{
                 System.out.print("*");
             }
             return;
         }
-        printSRow(n/3, i);
+        printFRow(n / 3, rdx, colSec);
     }
-    private static void printTRow(int n){
+    private static void printSRow(int n, int i, int rdx, int col){
         if(n / 3 == 1){
-            System.out.print("*");
+            if(i % 3 == 1 || (rdx % 3 == 1 && col % 3 == 1)){
+                System.out.print(" ");
+            }else{
+                System.out.print("*");
+            }
             return;
         }
-        printTRow(n / 3);
+        printSRow(n/3, i, rdx, col);
     }
-
-
 }
