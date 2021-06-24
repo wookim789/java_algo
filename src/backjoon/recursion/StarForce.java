@@ -13,8 +13,8 @@ public class StarForce {
         }
     }
     private static void recurFnc(int n, int rdx){
-        for(int col = 0; col < n; col++){
-            printFRow(n, rdx, col / 3);
+        for(int i = 0; i < n; i++){
+            printFRow(n, rdx, i / 3);
         }
         System.out.println();
         for(int i = 0; i < n; i++){
@@ -28,6 +28,7 @@ public class StarForce {
     }
     private static void printFRow(int n, int rdx, int colSec){
         if(n / 3 == 1){
+
             if(rdx % 3 == 1 && colSec % 3 == 1) {
                 System.out.print(" ");
             }else{
