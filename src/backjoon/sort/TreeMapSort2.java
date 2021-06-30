@@ -10,17 +10,25 @@ public class TreeMapSort2 {
 
         int n = Integer.parseInt(br.readLine());
 
-        List<Integer> list = new ArrayList<>();
+        LinkedList<Integer> linkedList = new LinkedList<>();
+        linkedList.add(Integer.parseInt(br.readLine()));
 
-        while(n > 0){
-            list.add(Integer.parseInt(br.readLine()));
+        while (n - 1 > 0){
+            int ele = Integer.parseInt(br.readLine());
+
+            for(int i = 0; i < linkedList.size(); i++){
+                if(linkedList.get(i) >= ele){
+                    linkedList.add(i, ele);
+                    break;
+                }
+            }
             n--;
         }
+
         br.close();
 
-        list.sort(null);
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-        for(Integer x : list){
+        for(Integer x : linkedList){
             bw.write(x + "\n");
         }
         bw.flush();
