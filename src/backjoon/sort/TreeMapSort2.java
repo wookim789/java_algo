@@ -12,7 +12,7 @@ public class TreeMapSort2 {
 
         LinkedList<Integer> linkedList = new LinkedList<>();
         linkedList.add(Integer.parseInt(br.readLine()));
-
+//test
         while (n - 1 > 0){
             int ele = Integer.parseInt(br.readLine());
 
