@@ -15,10 +15,15 @@ public class TreeMapSort2 {
 //test
         while (n - 1 > 0){
             int ele = Integer.parseInt(br.readLine());
+            int i = linkedList.size() / 2;
+            int lt = 0;
+            int rt = linkedList.size();
+            while(true){
+                if(linkedList.get(i) > ele){
 
-            for(int i = 0; i < linkedList.size(); i++){
-                if(linkedList.get(i) >= ele){
-                    linkedList.add(i, ele);
+                }else if(linkedList.get(i) < ele){
+
+                }else{
                     break;
                 }
             }
