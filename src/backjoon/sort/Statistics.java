@@ -60,14 +60,14 @@ public class Statistics {
         for(int i = 0; i < 4000; i++){
             if(mArr[i] > minusMostValue){
                 isMinusSecondMin = false;
-                minusMostValue = i;
+                minusMostValue = i * (-1);
             }else if(!isMinusSecondMin && mArr[i] == minusMostValue){
                 isMinusSecondMin = true;
-                minusMostValue = i;
+                minusMostValue = i * (-1);
             }
         }
 
-        int plustMostValue = minusMostValue;
+        int plustMostValue = 0;
         for(int i = 0; i < 4000; i++){
             if(pArr[i] > plustMostValue){
                 isMinusSecondMin = false;
