@@ -55,38 +55,13 @@ public class Statistics {
             midIdx -= pArr[i];
         }
 
-        boolean isMinusSecondMin = false;
-        int minusMostValue = 0;
-        for(int i = 0; i < 4000; i++){
-            if(mArr[i] > minusMostValue){
-                isMinusSecondMin = false;
-                minusMostValue = i * (-1);
-            }else if(!isMinusSecondMin && mArr[i] == minusMostValue){
-                isMinusSecondMin = true;
-                minusMostValue = i * (-1);
-            }
-        }
+        // 최빈값
+        // 음수 배열 -> 원소 값이 1이상이다 -> 카운트 1
+        // 앞의 원소 값보다 큰수의 등장 -> 카운트 1
+        // 이전 원소와 동일 하다 -> 증가 1
+        // 세는 숫자가 2이다 -> 해당 원소 인덱스 기록
 
-        int plustMostValue = 0;
-        for(int i = 0; i < 4000; i++){
-            if(pArr[i] > plustMostValue){
-                isMinusSecondMin = false;
-                plustMostValue = i;
-            }else if(!isMinusSecondMin && pArr[i] == plustMostValue){
-                isMinusSecondMin = true;
-                plustMostValue = i;
-            }
-        }
 
-        if(minusMostValue > plustMostValue){
-            System.out.println(minusMostValue);
-        }else if (minusMostValue < plustMostValue){
-            System.out.println(plustMostValue);
-        }else if (isMinusSecondMin){
-            System.out.println(minusMostValue);
-        }else{
-            System.out.println(plustMostValue);
-        }
 
         Integer min = null;
         Integer max = null;
