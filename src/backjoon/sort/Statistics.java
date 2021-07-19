@@ -3,7 +3,6 @@ package backjoon.sort;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
-//public class Main{
 public class Statistics {
     public static void main(String [] args) throws Exception{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -22,79 +21,90 @@ public class Statistics {
             }
         }
 
-        int avg = 0;
-        for(int i = 0; i < 4001; i++){
-            avg += (mArr[i] * i * (-1) + pArr[i] * i);
-        }
-        System.out.println(Math.round((float) avg / (float) n));
-
-        int midIdx = n / 2 + 1;
-        Integer midValue = null;
-        for(int i = 4000; i > 0; i--){
-            if(midIdx - mArr[i] == 0){
-                midValue = i;
-                break;
-            }
-            midIdx -= mArr[i];
-        }
-
-        for(int i = 0; i < 4001; i++){
-            if(midValue != null && midIdx == 0) {
-                System.out.println(midValue);
-                break;
-            }else if (midIdx - pArr[i] == 0){
-                System.out.println(i);
-                break;
-            }
-            midIdx -= pArr[i];
-        }
-
-        int cntIdx = 0;
-        int maxVal = 0;
+        // 산술 평균
         int result = 0;
-        for(int i = mArr.length - 1; i > 0 ; i--){
-            if(mArr[i] > maxVal){
-                maxVal = mArr[i];
-                cntIdx = 1;
-                result = i * (-1);
-            }else if(mArr[i] == maxVal && cntIdx < 2){
-                cntIdx ++;
-                result = i * (-1);
+        for(int i = 1; i < mArr.length; i++){
+            result += mArr[i] * i * (-1);
+            result += pArr[i] * i;
+        }
+        System.out.println(Math.round((float)result / (float) n));
+
+        // 중앙값
+        boolean isResult = false;
+        int midIdx = n / 2 + 1;
+        for(int i = 4000; i > 0; i--){
+            for(int tmp = mArr[i]; tmp > 0; tmp--){
+                if(midIdx > 1){
+                    midIdx--;
+                }else if (midIdx == 1){
+                    result = i * (-1);
+                    isResult = true;
+                    i = 0;
+                    break;
+                }
             }
         }
-
-        for(int i = 0; i < pArr.length; i++){
-            if(pArr[i] > maxVal){
-                maxVal = pArr[i];
-                cntIdx = 1;
-                result = i;
-            }else if(pArr[i] == maxVal && cntIdx < 2){
-                cntIdx ++;
-                result = i;
+        if(!isResult){
+            for(int i = 0; i < 4001; i++){
+                for(int tmp = pArr[i]; tmp > 0; tmp--){
+                    if(midIdx > 1){
+                        midIdx--;
+                    }else if (midIdx == 1){
+                        result = i;
+                        i = 4000;
+                        break;
+                    }
+                }
             }
         }
         System.out.println(result);
 
-        Integer mMin = 0;
-//        Integer mMax = 0;
-//        Integer pMin = 0;
-        Integer pMax = 0;
+        // 최빈값 같은 값이 여러개 -> 2번째로 작은 값 출력
+        int maxNum = 0;
+        boolean isSecond = false;
+        result = 0;
+
         for(int i = 4000; i > 0; i--){
-            if(mArr[i] > 0 && i * (-1) < mMin){
-                mMin = i * (-1);
-            }
-            if(pArr[i] > 0 && i > pMax){
-                pMax = i;
+            if(mArr[i] > maxNum){
+                result = i * (-1);
+                maxNum = mArr[i];
+                isSecond = true;
+            }else if (mArr[i] == maxNum && isSecond){
+                result = i * (-1);
+                isSecond = false;
             }
         }
-
-        if(mMin != 0 && pMax != 0){
-            System.out.println(pMax - mMin);
-            return;
+        for(int i = 0; i < 4001; i++){
+            if(pArr[i] > maxNum){
+                result = i;
+                maxNum = pArr[i];
+                isSecond = true;
+            }else if(pArr[i] == maxNum && isSecond){
+                result = i;
+                isSecond = false;
+            }
         }
+        System.out.println(result);
 
-//        for(int i = 0; i < 4001; i++){
-//            if(mArr[i] > 0 && i * (-1) )
-//        }
+        int min = 4001;
+        int max = -4001;
+
+        for(int i = 4000; i > 0; i--){
+            if(mArr[i] > 0 && i * (-1) < min){
+                min = i * (-1);
+            }
+            if(mArr[i] > 0 && i * (-1) > max){
+                max = i * (-1);
+            }
+        }
+        for(int i = 0; i < 4001; i++){
+            if(pArr[i] > 0 && i < min){
+                min = i;
+            }
+            if(pArr[i] > 0 && i > max){
+                max = i;
+            }
+        }
+        System.out.println(max - min);
     }
 }
