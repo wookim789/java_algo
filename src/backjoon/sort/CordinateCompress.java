@@ -2,10 +2,7 @@ package backjoon.sort;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.Arrays;
-import java.util.List;
-import java.util.SortedSet;
-import java.util.TreeSet;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Main {
@@ -14,21 +11,28 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         br.readLine();
+        String[] xArr = br.readLine().split(" ");
 
-        List<Integer> xList = Arrays.stream(br.readLine().split(" "))
-                .map(Integer::parseInt)
-                .collect(Collectors.toList());
-
-        SortedSet<Integer> xSet = new TreeSet<>();
-        for(Integer x : xList){
-            xSet.add(x);
+        List<Integer> xList = new ArrayList<>();
+        for(String x : xArr){
+            xList.add(Integer.parseInt(x));
         }
 
-        String result = "";
-        for(Integer x : xList){
-            result = result + xSet.headSet(x).size() + " ";
-        }
+        xList.stream().sorted();
+        List<Integer> setList = new ArrayList<>();
 
-        System.out.println(result);
+        for(Integer i : xList){
+            if(!setList.isEmpty() && !setList.get(setList.size()-1).equals(i)){
+                setList.add(i);
+            }else if(setList.isEmpty()){
+                setList.add(i);
+            }
+        }
+        StringBuilder sb = new StringBuilder();
+
+        for(String i : xArr){
+            sb.append(setList.indexOf(Integer.parseInt(i))).append(" ");
+        }
+        System.out.println(sb);
     }
 }
